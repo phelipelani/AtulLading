@@ -16,11 +16,18 @@ import { useMenuState } from "../../pages/menu";
 
 const NavBar = () => {
   const { isMenuActive, setIsMenuActive } = useMenuState();
-  
+
+  function openWhatsApp() {
+    const phoneNumber = '+5512978131357'; // Insira o número de telefone com o código do país, sem espaços ou caracteres especiais
+    const message = 'Olá! Gostaria de conversar!'; // Saudação predefinida
+    const encodedMessage = encodeURIComponent(message);
+    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(url, '_blank');
+  }
 
   const handleMenuToggle = () => {
     setIsMenuActive(!isMenuActive);
-  }; 
+  };
 
   return (
     <>
@@ -28,8 +35,8 @@ const NavBar = () => {
         <SociaisMidiasStyled>
           <BsFillTelephoneOutboundFill className="wppIcons fone" />
           <a href="tel:+5512978131357">(12) 3883 - 8005</a>
-          <IoLogoWhatsapp className="wppIcons wpp" />
-          <h5>(12) 9 8300 - 3611</h5>
+          <IoLogoWhatsapp onClick={openWhatsApp} className="wppIcons wpp" />
+          <h5 onClick={openWhatsApp}>(12) 9 8300 - 3611</h5>
           <RiInstagramFill className="wppIcons insta" />
         </SociaisMidiasStyled>
 

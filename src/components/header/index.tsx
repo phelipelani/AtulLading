@@ -11,22 +11,23 @@ import {
   NavStyled,
   SociaisMidiasStyled,
 } from "./styles";
-import { Outlet } from "react-router-dom";
-import { useMenuState } from "../../pages/menu";
+import { useCarrocelState, useMenuState } from "../../pages/menu";
 
 const NavBar = () => {
   const { isMenuActive, setIsMenuActive } = useMenuState();
+  const { isCarrocel, setIsCarrocel } = useCarrocelState();
 
   function openWhatsApp() {
-    const phoneNumber = '+5512978131357'; // Insira o número de telefone com o código do país, sem espaços ou caracteres especiais
-    const message = 'Olá! Gostaria de conversar!'; // Saudação predefinida
+    const phoneNumber = "+5512978131357"; // Insira o número de telefone com o código do país, sem espaços ou caracteres especiais
+    const message = "Olá! Gostaria de conversar!"; // Saudação predefinida
     const encodedMessage = encodeURIComponent(message);
     const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   }
 
   const handleMenuToggle = () => {
     setIsMenuActive(!isMenuActive);
+    setIsCarrocel(!isCarrocel);
   };
 
   return (
@@ -46,7 +47,10 @@ const NavBar = () => {
           </DivLogo>
 
           <MidiaStyled>
-            <NavStyled className={`navList ${isMenuActive ? "open" : ""}`}>
+            <NavStyled
+              id="nav"
+              className={`navList ${isMenuActive ? "open" : ""}`}
+            >
               <ButtonNav to="/">Home</ButtonNav>
               <ButtonNav to="/quemsomos">Quem Somos</ButtonNav>
               <ButtonNav to="/missao">Nossos Objetivos</ButtonNav>
@@ -63,7 +67,6 @@ const NavBar = () => {
           </div>
         </ContainerHeaderStyled>
       </HeaderStyled>
-      <Outlet />
     </>
   );
 };

@@ -6,6 +6,8 @@ export const TextStyled = styled.div`
   }
   .banner {
     height: 100%;
+    width: 80%;
+    object-fit: cover;
   }
 `;
 
@@ -23,6 +25,9 @@ export const CarrosselContainer = styled.div`
   box-sizing: border-box;
   background-color: black;
 
+  &.menu-active {
+    width: 80%;
+  }
 
   .carousel-root {
     width: 100%;
@@ -43,6 +48,10 @@ export const CarouselStyled = styled.div`
   overflow: hidden;
   width: 100%;
   height: auto;
+
+  &.menu-active {
+    width: 80%;
+  }
 }
 
 .prev-button,
@@ -75,7 +84,7 @@ export const CarouselStyled = styled.div`
 .slide-container img {
   width: 100%;
   height: 100%;
-  objecti-fit:cover;
+  object-fit:cover;
   opacity:0.8;
 }
 

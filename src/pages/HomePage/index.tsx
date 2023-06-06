@@ -1,19 +1,25 @@
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import {
-  CarouselStyled,
-  CarrosselContainer,
-  ConteinerStaly,
-  MainStyled,
-  TextStyled,
-} from "./styles";
+import { CarouselStyled, ConteinerStaly, MainStyled } from "./styles";
 import { useEffect, useState } from "react";
 import Banner1 from "../../assets/banner 1.png";
 import Banner2 from "../../assets/banner 2.jpeg";
 import Banner3 from "../../assets/banner 3.jpg";
 import NavBar from "../../components/header";
 
+
 const Home = () => {
+  
+    const element = document.getElementById("nav");
+  
+    if (element && element.classList.contains("open")) {
+      console.log("A classe está definida");
+    } else {
+      console.log("A classe não está definida");
+    }
+  
+
+
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -42,11 +48,19 @@ const Home = () => {
     }, 1000);
   };
 
-
   const slides = [
-    { image: Banner1, text: 'Síndico profissional: Soluções eficientes para uma administração tranquila do seu condomínio' },
-    { image: Banner2, text: 'Confie seu condomínio a profissionais especializados em administração condominial.' },
-    { image: Banner3, text: 'A escolha certa para uma gestão transparente e profissional do seu condomínio.' },
+    {
+      image: Banner1,
+      text: "Síndico profissional: Soluções eficientes para uma administração tranquila do seu condomínio",
+    },
+    {
+      image: Banner2,
+      text: "Confie seu condomínio a profissionais especializados em administração condominial.",
+    },
+    {
+      image: Banner3,
+      text: "A escolha certa para uma gestão transparente e profissional do seu condomínio.",
+    },
   ];
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
@@ -62,34 +76,40 @@ const Home = () => {
   }, [currentSlideIndex, nextSlide]);
 
   const prevSlide = () => {
-    setCurrentSlideIndex((currentSlideIndex - 1 + slides.length) % slides.length);
+    setCurrentSlideIndex(
+      (currentSlideIndex - 1 + slides.length) % slides.length
+    );
   };
   return (
     <>
-       <NavBar />
-       <ConteinerStaly>
-      <MainStyled>
-        <CarouselStyled>
-          <div className="carousel">
-            <button className="prev-button" onClick={prevSlide}>Anterior</button>
-            <div className="slide-container">
-              <img src={slides[currentSlideIndex].image} alt={slides[currentSlideIndex].text} />
-              <div className="slide-text">{slides[currentSlideIndex].text}</div>
+      <NavBar />
+      <ConteinerStaly >
+        <MainStyled>
+          <CarouselStyled>
+            <div className="carousel">
+              <button className="prev-button" onClick={prevSlide}>
+                Anterior
+              </button>
+              <div className="slide-container">
+                <img
+                  src={slides[currentSlideIndex].image}
+                  alt={slides[currentSlideIndex].text}
+                />
+                <div className="slide-text">
+                  {slides[currentSlideIndex].text}
+                </div>
+              </div>
+              <button className="next-button" onClick={nextSlide}>
+                Próxima
+              </button>
             </div>
-            <button className="next-button" onClick={nextSlide}>Próxima</button>
-          </div>
-        </CarouselStyled>
-      
-      </MainStyled>
+          </CarouselStyled>
+        </MainStyled>
 
-      {/* Renderizar o elemento de carregamento quando estiver carregando mais conteúdo */}
-      {loading && <div>Carregando...</div>}
-    </ConteinerStaly>
-    
-    
-    
+        {/* Renderizar o elemento de carregamento quando estiver carregando mais conteúdo */}
+        {loading && <div>Carregando...</div>}
+      </ConteinerStaly>
     </>
-
   );
 };
 

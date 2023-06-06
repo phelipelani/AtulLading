@@ -8,3 +8,12 @@ export const useMenuState = () => {
     setIsMenuActive,
   };
 };
+
+export const useCarrocelState = () => {
+  const [isCarrocel, setIsCarrocel] = useState(false);
+  
+  return {
+    isCarrocel,
+    setIsCarrocel ,
+  };
+};

@@ -1,6 +1,7 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {
+  CarouselStyled,
   CarrosselContainer,
   ConteinerStaly,
   MainStyled,
@@ -40,35 +41,45 @@ const Home = () => {
       setLoading(false);
     }, 1000);
   };
+
+
+  const slides = [
+    { image: Banner1, text: 'Síndico profissional: Soluções eficientes para uma administração tranquila do seu condomínio' },
+    { image: Banner2, text: 'Confie seu condomínio a profissionais especializados em administração condominial.' },
+    { image: Banner3, text: 'A escolha certa para uma gestão transparente e profissional do seu condomínio.' },
+  ];
+
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlideIndex((currentSlideIndex + 1) % slides.length);
+  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000); // Muda o slide a cada 5 segundos
+    return () => clearInterval(timer);
+  }, [currentSlideIndex, nextSlide]);
+
+  const prevSlide = () => {
+    setCurrentSlideIndex((currentSlideIndex - 1 + slides.length) % slides.length);
+  };
   return (
     <>
        <NavBar />
        <ConteinerStaly>
       <MainStyled>
-        <CarrosselContainer>
-          <Carousel
-            showArrows={true}
-            autoPlay
-            interval={5000}
-            stopOnHover={false}
-            showThumbs={false}
-            showStatus={false}
-            emulateTouch
-            infiniteLoop
-          >
-            <TextStyled>
-              <img className="banner" src={Banner1} alt="Imagem 1" />
-              <p className="legend">Texto sobre a imagem 1</p>
-            </TextStyled>
-            <TextStyled>
-              <img className="banner" src={Banner2} alt="Imagem 2" />
-            </TextStyled>
-            <TextStyled>
-              <img className="banner" src={Banner3} alt="Imagem 3" />
-              <p className="legend">Texto sobre a imagem 3</p>
-            </TextStyled>
-          </Carousel>
-        </CarrosselContainer>
+        <CarouselStyled>
+          <div className="carousel">
+            <button className="prev-button" onClick={prevSlide}>Anterior</button>
+            <div className="slide-container">
+              <img src={slides[currentSlideIndex].image} alt={slides[currentSlideIndex].text} />
+              <div className="slide-text">{slides[currentSlideIndex].text}</div>
+            </div>
+            <button className="next-button" onClick={nextSlide}>Próxima</button>
+          </div>
+        </CarouselStyled>
+      
       </MainStyled>
 
       {/* Renderizar o elemento de carregamento quando estiver carregando mais conteúdo */}

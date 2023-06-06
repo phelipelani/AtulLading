@@ -1,4 +1,11 @@
+import NavBar from "../../components/header";
+
 const QuemSomos = () => {
-  return <h1>Quem Somos</h1>;
+  return (
+    <>
+      <NavBar />
+      <h1>Quem Somos</h1>
+    </>
+  );
 };
 export default QuemSomos;

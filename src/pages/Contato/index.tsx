@@ -1,4 +1,11 @@
+import NavBar from "../../components/header";
+
 const Contato = () => {
-  return <h1>Contato</h1>;
+  return (
+    <>
+      <NavBar />
+      <h1>Contato</h1>;
+    </>
+  );
 };
 export default Contato;

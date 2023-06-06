@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Banner1 from "../../assets/banner 1.png";
 import Banner2 from "../../assets/banner 2.jpeg";
 import Banner3 from "../../assets/banner 3.jpg";
+import NavBar from "../../components/header";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -40,7 +41,9 @@ const Home = () => {
     }, 1000);
   };
   return (
-    <ConteinerStaly>
+    <>
+       <NavBar />
+       <ConteinerStaly>
       <MainStyled>
         <CarrosselContainer>
           <Carousel
@@ -71,6 +74,11 @@ const Home = () => {
       {/* Renderizar o elemento de carregamento quando estiver carregando mais conteúdo */}
       {loading && <div>Carregando...</div>}
     </ConteinerStaly>
+    
+    
+    
+    </>
+
   );
 };
 
